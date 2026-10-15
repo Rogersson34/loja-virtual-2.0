@@ -3,72 +3,96 @@
         {
             "id": 1,
             "nome": "Bicicleta",
+            "descricao": "Bicicleta para uso recreativo e esportivo.",
+            "categoria": "Esportes",
             "imagem": "./assets/bicicleta.jpg",
             "preco": 900.00
         },
         {
             "id": 2,
             "nome": "Celular",
+            "descricao": "Celular para uso pessoal.",
+            "categoria": "Eletronico",
             "imagem": "./assets/celular.jpg",
             "preco": 1700.00
         },
         {
             "id": 3,
             "nome": "Ferramentas",
+            "descricao": "Ferramentas para uso doméstico e profissional.",
+            "categoria": "Ferramentas",
             "imagem": "./assets/ferramentas.jpg",
             "preco": 140.00
         },
         {
             "id": 4,
             "nome": "Impressora",
+            "descricao": "Impressora para uso doméstico e profissional.",
+            "categoria": "Eletronico",
             "imagem": "./assets/impressora.jpg",
             "preco": 799.00
         },
         {
             "id": 5,
             "nome": "Liquidificador",
+            "descricao": "Liquidificador para uso doméstico.",
+            "categoria": "Eletrodomésticos",
             "imagem": "./assets/liquidificador.jpg",
             "preco": 99.90
         },
         {
             "id": 6,
             "nome": "Notebook",
+            "descricao": "Notebook para uso pessoal e profissional.",
+            "categoria": "Eletronico",
             "imagem": "./assets/notebook.jpg",
             "preco": 1999.90
         },
         {
             "id": 7,
             "nome": "Panelas",
+            "descricao": "Panelas para uso doméstico.",
+            "categoria": "Eletrodomésticos",
             "imagem": "./assets/panelas.jpg",
             "preco": 229.90
         },
         {
             "id": 8,
             "nome": "TV",
+            "descricao": "TV para uso doméstico.",
+            "categoria": "Eletronico",
             "imagem": "./assets/tv.jpg",
             "preco": 2499.00
         },
         {
             "id": 9,
             "nome": "Video Game Xbox",
+            "descricao": "Video game para uso recreativo.",
+            "categoria": "Eletronico",
             "imagem": "https://horizonplay.fbitsstatic.net/img/p/console-microsoft-xbox-series-s-512gb-branco-151641/338236.jpg?w=670&h=670&v=no-value",
             "preco": 2800.00
         },
         {
             "id": 10,
             "nome": "Pneu Aro 14",
+            "descricao": "Pneu para uso doméstico.",
+            "categoria": "Automotivo",
             "imagem": "./assets/pneu.jpg",
             "preco": 179.90
         },
         {
             "id": 11,
             "nome": "Pneu Aro 15",
+            "descricao": "Pneu para uso doméstico.",
+            "categoria": "Automotivo",
             "imagem": "./assets/pneu.jpg",
             "preco": 269.90
         },
         {
             "id": 12,
             "nome": "Pneu Aro 16",
+            "descricao": "Pneu para uso doméstico.",
+            "categoria": "Automotivo",
             "imagem": "./assets/pneu.jpg",
             "preco": 329.90
         }
