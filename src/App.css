@@ -421,3 +421,56 @@ body {
   }
 
 }
+
+/* Página de detalhes */
+
+.detalhes-produto {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  padding: 30px 0;
+}
+
+.detalhes-produto img {
+  width: 45%;
+  max-height: 400px;
+  object-fit: contain;
+}
+
+.detalhes-info {
+  flex: 1;
+}
+
+.detalhes-info button {
+  display: block;
+  padding: 12px 20px;
+  margin: 20px 0;
+  cursor: pointer;
+}
+
+.link-produto {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Celulares */
+
+@media (max-width: 600px) {
+  .detalhes-produto {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .detalhes-produto img {
+    width: 100%;
+    max-height: 300px;
+  }
+
+  .detalhes-info {
+    width: 100%;
+  }
+
+  .detalhes-info button {
+    width: 100%;
+  }
+}
