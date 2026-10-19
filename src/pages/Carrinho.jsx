@@ -1,11 +1,18 @@
+
 import ItemCarrinho from '../components/ItemCarrinho.jsx'
 import ResumoCompra from '../components/ResumoCompra.jsx'
+import { useCarrinho } from '../hooks/useCarrinho.js'
 
-function Carrinho({ itens, onRemover, onAtualizarQuantidade }) {
+function Carrinho() {
+    const {
+        carrinho,
+        removerDoCarrinho,
+        atualizarQuantidade
+    } = useCarrinho()
 
     // Soma o valor de todos os produtos
-    const total = itens.reduce((soma, item) => {
-        return soma + (item.preco * item.quantidade)
+    const total = carrinho.reduce((soma, item) => {
+        return soma + (Number(item.preco) * item.quantidade)
     }, 0)
 
     return (
@@ -13,7 +20,7 @@ function Carrinho({ itens, onRemover, onAtualizarQuantidade }) {
 
             <h1>🛍️ Carrinho de Compras</h1>
 
-            {itens.length === 0 ? (
+            {carrinho.length === 0 ? (
 
                 <p>Seu carrinho está vazio.</p>
 
@@ -21,12 +28,12 @@ function Carrinho({ itens, onRemover, onAtualizarQuantidade }) {
 
                 <div>
 
-                    {itens.map((item) => (
+                    {carrinho.map((item) => (
                         <ItemCarrinho
                             key={item.id}
                             item={item}
-                            onRemover={onRemover}
-                            onAtualizarQuantidade={onAtualizarQuantidade}
+                            onRemover={removerDoCarrinho}
+                            onAtualizarQuantidade={atualizarQuantidade}
                         />
                     ))}
 
@@ -41,7 +48,8 @@ function Carrinho({ itens, onRemover, onAtualizarQuantidade }) {
                 </div>
             )}
 
-            <ResumoCompra itens={itens} />
+            <ResumoCompra itens={carrinho} />
+
         </div>
     )
 }

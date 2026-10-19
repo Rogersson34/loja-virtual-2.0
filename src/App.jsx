@@ -19,10 +19,7 @@ function App() {
     const [busca, setBusca] = useState('')
 
     const {
-        carrinho,
         adicionarAoCarrinho,
-        removerDoCarrinho,
-        atualizarQuantidade,
         quantidadeTotal
     } = useCarrinho()
 
@@ -72,11 +69,7 @@ function App() {
                             <strong>{quantidadeTotal}</strong>
                         </p>
 
-                        <Carrinho
-                            itens={carrinho}
-                            onRemover={removerDoCarrinho}
-                            onAtualizarQuantidade={atualizarQuantidade}
-                        />
+                        <Carrinho />
 
                         <div className="campo-busca">
                             <input
