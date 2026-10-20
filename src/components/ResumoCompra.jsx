@@ -1,16 +1,15 @@
-import { useNavigate } from 'react-router-dom'
-function ResumoCompra({ itens }) {
 
+import { useNavigate } from 'react-router-dom'
+import { useCarrinho } from '../hooks/useCarrinho.js'
+
+function ResumoCompra() {
     const navigate = useNavigate()
 
-    const quantidadeTotal = itens.reduce(
-        (total, item) => total + item.quantidade,
-        0
-    )
+    const { carrinho, quantidadeTotal } = useCarrinho()
 
-    const valorTotal = itens.reduce(
+    const valorTotal = carrinho.reduce(
         (total, item) => {
-            return total + (item.preco * item.quantidade)
+            return total + (Number(item.preco) * item.quantidade)
         },
         0
     )
@@ -38,11 +37,15 @@ function ResumoCompra({ itens }) {
                 <strong> R$ {valorTotal.toFixed(2)}</strong>
             </p>
 
-            <button onClick={irParaPagamento}>Finalizar compra</button>
+            <button
+                onClick={irParaPagamento}
+                disabled={carrinho.length === 0}
+            >
+                Finalizar compra
+            </button>
 
         </div>
     )
 }
 
 export default ResumoCompra
-
