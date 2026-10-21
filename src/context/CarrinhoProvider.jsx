@@ -1,9 +1,30 @@
-
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { CarrinhoContext } from './CarrinhoContext'
 
+const CHAVE_CARRINHO = 'loja-virtual:carrinho'
+
 export function CarrinhoProvider({ children }) {
-  const [carrinho, setCarrinho] = useState([])
+  const [carrinho, setCarrinho] = useState(() => {
+    try {
+      const carrinhoSalvo = localStorage.getItem(CHAVE_CARRINHO)
+
+      return carrinhoSalvo ? JSON.parse(carrinhoSalvo) : []
+    } catch (error) {
+      console.error('Erro ao carregar o carrinho:', error)
+      return []
+    }
+  })
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(
+        CHAVE_CARRINHO,
+        JSON.stringify(carrinho)
+      )
+    } catch (error) {
+      console.error('Erro ao salvar o carrinho:', error)
+    }
+  }, [carrinho])
 
   function adicionarAoCarrinho(produto) {
     const produtoJaExiste = carrinho.find(
@@ -11,34 +32,21 @@ export function CarrinhoProvider({ children }) {
     )
 
     if (produtoJaExiste) {
-      const novoCarrinho = carrinho.map(item => {
-        if (item.id === produto.id) {
-          return {
-            ...item,
-            quantidade: item.quantidade + 1
-          }
-        }
-
-        return item
-      })
-
-      setCarrinho(novoCarrinho)
+      setCarrinho(carrinho.map(item =>
+        item.id === produto.id
+          ? { ...item, quantidade: item.quantidade + 1 }
+          : item
+      ))
     } else {
-      const novoProduto = {
-        ...produto,
-        quantidade: 1
-      }
-
-      setCarrinho([...carrinho, novoProduto])
+      setCarrinho([
+        ...carrinho,
+        { ...produto, quantidade: 1 }
+      ])
     }
   }
 
   function removerDoCarrinho(id) {
-    const novoCarrinho = carrinho.filter(
-      item => item.id !== id
-    )
-
-    setCarrinho(novoCarrinho)
+    setCarrinho(carrinho.filter(item => item.id !== id))
   }
 
   function atualizarQuantidade(id, novaQuantidade) {
@@ -47,18 +55,11 @@ export function CarrinhoProvider({ children }) {
       return
     }
 
-    const novoCarrinho = carrinho.map(item => {
-      if (item.id === id) {
-        return {
-          ...item,
-          quantidade: novaQuantidade
-        }
-      }
-
-      return item
-    })
-
-    setCarrinho(novoCarrinho)
+    setCarrinho(carrinho.map(item =>
+      item.id === id
+        ? { ...item, quantidade: novaQuantidade }
+        : item
+    ))
   }
 
   const quantidadeTotal = carrinho.reduce(
@@ -70,6 +71,7 @@ export function CarrinhoProvider({ children }) {
     <CarrinhoContext.Provider
       value={{
         carrinho,
+        setCarrinho,
         adicionarAoCarrinho,
         removerDoCarrinho,
         atualizarQuantidade,

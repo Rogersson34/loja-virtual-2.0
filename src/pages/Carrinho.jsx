@@ -6,8 +6,6 @@ import { useCarrinho } from '../hooks/useCarrinho.js'
 function Carrinho() {
     const {
         carrinho,
-        removerDoCarrinho,
-        atualizarQuantidade
     } = useCarrinho()
 
     // Soma o valor de todos os produtos
@@ -32,8 +30,7 @@ function Carrinho() {
                         <ItemCarrinho
                             key={item.id}
                             item={item}
-                            onRemover={removerDoCarrinho}
-                            onAtualizarQuantidade={atualizarQuantidade}
+
                         />
                     ))}
 
@@ -48,7 +45,7 @@ function Carrinho() {
                 </div>
             )}
 
-            <ResumoCompra itens={carrinho} />
+            <ResumoCompra />
 
         </div>
     )
