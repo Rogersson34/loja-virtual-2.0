@@ -1,0 +1,36 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    background-color: #222;
+    color: white;
+}
+
+.logo {
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.navegacao {
+    display: flex;
+    gap: 16px;
+}
+
+.navegacao a {
+    color: white;
+    text-decoration: none;
+}
+
+.navegacao a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+    .header {
+        flex-direction: column;
+    }
+}
