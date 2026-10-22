@@ -5,7 +5,7 @@
             "nome": "Bicicleta",
             "descricao": "Bicicleta para uso recreativo e esportivo.",
             "categoria": "Esportes",
-            "imagem": "./assets/bicicleta.jpg",
+            "imagem": "/assets/bicicleta.jpg",
             "preco": 900.00
         },
         {
@@ -13,7 +13,7 @@
             "nome": "Celular",
             "descricao": "Celular para uso pessoal.",
             "categoria": "Eletronico",
-            "imagem": "./assets/celular.jpg",
+            "imagem": "/assets/celular.jpg",
             "preco": 1700.00
         },
         {
@@ -21,7 +21,7 @@
             "nome": "Ferramentas",
             "descricao": "Ferramentas para uso doméstico e profissional.",
             "categoria": "Ferramentas",
-            "imagem": "./assets/ferramentas.jpg",
+            "imagem": "/assets/ferramentas.jpg",
             "preco": 140.00
         },
         {
@@ -29,7 +29,7 @@
             "nome": "Impressora",
             "descricao": "Impressora para uso doméstico e profissional.",
             "categoria": "Eletronico",
-            "imagem": "./assets/impressora.jpg",
+            "imagem": "/assets/impressora.jpg",
             "preco": 799.00
         },
         {
@@ -37,7 +37,7 @@
             "nome": "Liquidificador",
             "descricao": "Liquidificador para uso doméstico.",
             "categoria": "Eletrodomésticos",
-            "imagem": "./assets/liquidificador.jpg",
+            "imagem": "/assets/liquidificador.jpg",
             "preco": 99.90
         },
         {
@@ -45,7 +45,7 @@
             "nome": "Notebook",
             "descricao": "Notebook para uso pessoal e profissional.",
             "categoria": "Eletronico",
-            "imagem": "./assets/notebook.jpg",
+            "imagem": "/assets/notebook.jpg",
             "preco": 1999.90
         },
         {
@@ -53,7 +53,7 @@
             "nome": "Panelas",
             "descricao": "Panelas para uso doméstico.",
             "categoria": "Eletrodomésticos",
-            "imagem": "./assets/panelas.jpg",
+            "imagem": "/assets/panelas.jpg",
             "preco": 229.90
         },
         {
@@ -61,7 +61,7 @@
             "nome": "TV",
             "descricao": "TV para uso doméstico.",
             "categoria": "Eletronico",
-            "imagem": "./assets/tv.jpg",
+            "imagem": "/assets/tv.jpg",
             "preco": 2499.00
         },
         {
@@ -77,7 +77,7 @@
             "nome": "Pneu Aro 14",
             "descricao": "Pneu para uso doméstico.",
             "categoria": "Automotivo",
-            "imagem": "./assets/pneu.jpg",
+            "imagem": "/assets/pneu.jpg",
             "preco": 179.90
         },
         {
@@ -85,7 +85,7 @@
             "nome": "Pneu Aro 15",
             "descricao": "Pneu para uso doméstico.",
             "categoria": "Automotivo",
-            "imagem": "./assets/pneu.jpg",
+            "imagem": "/assets/pneu.jpg",
             "preco": 269.90
         },
         {
@@ -93,7 +93,7 @@
             "nome": "Pneu Aro 16",
             "descricao": "Pneu para uso doméstico.",
             "categoria": "Automotivo",
-            "imagem": "./assets/pneu.jpg",
+            "imagem": "/assets/pneu.jpg",
             "preco": 329.90
         }
     ]
