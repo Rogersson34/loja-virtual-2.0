@@ -1,5 +1,10 @@
+import { useCarrinho } from '../hooks/useCarrinho.js'
 
-function ItemCarrinho({ item, onRemover, onAtualizarQuantidade }) {
+function ItemCarrinho({ item }) {
+    const {
+        removerDoCarrinho,
+        atualizarQuantidade
+    } = useCarrinho()
 
     return (
         <div className="item-carrinho">
@@ -8,16 +13,15 @@ function ItemCarrinho({ item, onRemover, onAtualizarQuantidade }) {
                 <h3>{item.nome}</h3>
 
                 <p>
-                    Preço: R$ {item.preco.toFixed(2)}
+                    Preço: R$ {Number(item.preco).toFixed(2)}
                 </p>
             </div>
-
 
             <div className="controle-quantidade">
 
                 <button
                     onClick={() =>
-                        onAtualizarQuantidade(
+                        atualizarQuantidade(
                             item.id,
                             item.quantidade - 1
                         )
@@ -26,15 +30,11 @@ function ItemCarrinho({ item, onRemover, onAtualizarQuantidade }) {
                     -
                 </button>
 
-
-                <span>
-                    {item.quantidade}
-                </span>
-
+                <span>{item.quantidade}</span>
 
                 <button
                     onClick={() =>
-                        onAtualizarQuantidade(
+                        atualizarQuantidade(
                             item.id,
                             item.quantidade + 1
                         )
@@ -45,18 +45,16 @@ function ItemCarrinho({ item, onRemover, onAtualizarQuantidade }) {
 
             </div>
 
-
             <div className="subtotal-item">
-
                 <p>
-                    Subtotal: R$ {(item.preco * item.quantidade).toFixed(2)}
+                    Subtotal: R$ {
+                        (Number(item.preco) * item.quantidade).toFixed(2)
+                    }
                 </p>
-
             </div>
 
-
             <button
-                onClick={() => onRemover(item.id)}
+                onClick={() => removerDoCarrinho(item.id)}
             >
                 🗑️ Remover
             </button>
