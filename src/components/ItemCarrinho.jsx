@@ -1,3 +1,4 @@
+
 import { useCarrinho } from '../hooks/useCarrinho.js'
 
 function ItemCarrinho({ item }) {
@@ -6,26 +7,30 @@ function ItemCarrinho({ item }) {
         atualizarQuantidade
     } = useCarrinho()
 
+    const estoque = Number(item.estoque) || 0
+
     return (
         <div className="item-carrinho">
-
             <div className="info-produto">
                 <h3>{item.nome}</h3>
 
                 <p>
-                    Preço: R$ {Number(item.preco).toFixed(2)}
+                    Preço: {Number(item.preco).toLocaleString('pt-BR', {
+                        style: 'currency',
+                        currency: 'BRL'
+                    })}
                 </p>
+
+                <p>Estoque disponível: {estoque}</p>
             </div>
 
             <div className="controle-quantidade">
-
                 <button
                     onClick={() =>
-                        atualizarQuantidade(
-                            item.id,
-                            item.quantidade - 1
-                        )
+                        atualizarQuantidade(item.id, item.quantidade - 1)
                     }
+                    disabled={item.quantidade <= 1}
+                    aria-label={`Diminuir quantidade de ${item.nome}`}
                 >
                     -
                 </button>
@@ -34,31 +39,28 @@ function ItemCarrinho({ item }) {
 
                 <button
                     onClick={() =>
-                        atualizarQuantidade(
-                            item.id,
-                            item.quantidade + 1
-                        )
+                        atualizarQuantidade(item.id, item.quantidade + 1)
                     }
+                    disabled={item.quantidade >= estoque}
+                    aria-label={`Aumentar quantidade de ${item.nome}`}
                 >
                     +
                 </button>
-
             </div>
 
             <div className="subtotal-item">
                 <p>
-                    Subtotal: R$ {
-                        (Number(item.preco) * item.quantidade).toFixed(2)
-                    }
+                    Subtotal: {(Number(item.preco) * item.quantidade)
+                        .toLocaleString('pt-BR', {
+                            style: 'currency',
+                            currency: 'BRL'
+                        })}
                 </p>
             </div>
 
-            <button
-                onClick={() => removerDoCarrinho(item.id)}
-            >
+            <button onClick={() => removerDoCarrinho(item.id)}>
                 🗑️ Remover
             </button>
-
         </div>
     )
 }
