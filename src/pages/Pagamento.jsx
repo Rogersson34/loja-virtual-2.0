@@ -3,16 +3,24 @@ import { useLocation, useNavigate } from 'react-router-dom'
 
 import usePagamento from '../hooks/usePagamento.js'
 import validarCartao from '../utils/pagamento.js'
+import { useCarrinho } from '../hooks/useCarrinho.js'
 
 function Pagamento() {
     const navigate = useNavigate()
     const { state } = useLocation()
     const { processarPagamento, carregando } = usePagamento()
+    const { carrinho, setCarrinho } = useCarrinho()
 
-    const total = state?.total || 0
+    const total = carrinho.reduce(
+        (soma, item) => soma + Number(item.preco) * item.quantidade,
+        0
+    )
 
     const [formaPagamento, setFormaPagamento] = useState('')
     const [erro, setErro] = useState('')
+
+    console.log(state)
+
     const [cartao, setCartao] = useState({
         titular: '',
         numero: '',
@@ -22,7 +30,11 @@ function Pagamento() {
 
     function preencherCartao(event) {
         const { name, value } = event.target
-        setCartao({ ...cartao, [name]: value })
+
+        setCartao({
+            ...cartao,
+            [name]: value
+        })
     }
 
     async function finalizarPagamento(event) {
@@ -53,14 +65,34 @@ function Pagamento() {
             cartao.numero
         )
 
-        aprovado
-            ? navigate('/sucesso', {
+        if (aprovado) {
+            setCarrinho([])
+
+            navigate('/sucesso', {
                 state: { total, formaPagamento }
             })
-            : navigate('/falha')
+        } else {
+            navigate('/falha')
+        }
     }
 
     const formas = ['Pix', 'Cartão de Crédito', 'Boleto']
+
+    if (carrinho.length === 0) {
+        return (
+            <div className="pagina-pagamento">
+                <h1>Seu carrinho está vazio</h1>
+
+                <p>
+                    Adicione produtos antes de realizar o pagamento.
+                </p>
+
+                <button onClick={() => navigate('/')}>
+                    Voltar para a loja
+                </button>
+            </div>
+        )
+    }
 
     return (
         <div className="pagina-pagamento">
@@ -110,7 +142,9 @@ function Pagamento() {
                     </div>
                 )}
 
-                {erro && <p className="mensagem-erro">{erro}</p>}
+                {erro && (
+                    <p className="mensagem-erro">{erro}</p>
+                )}
 
                 <button type="submit" disabled={carregando}>
                     {carregando
@@ -123,4 +157,3 @@ function Pagamento() {
 }
 
 export default Pagamento
-

@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import { useCarrinho } from '../hooks/useCarrinho'
 
-function DetalhesProduto({ onAdicionar }) {
+function DetalhesProduto() {
     const { id } = useParams()
+    const { adicionarAoCarrinho } = useCarrinho()
 
     const [produto, setProduto] = useState(null)
     const [carregando, setCarregando] = useState(true)
@@ -11,6 +13,9 @@ function DetalhesProduto({ onAdicionar }) {
     useEffect(() => {
         async function buscarProduto() {
             try {
+                setCarregando(true)
+                setErro('')
+
                 const resposta = await fetch(
                     `http://localhost:3001/produtos/${id}`
                 )
@@ -21,11 +26,9 @@ function DetalhesProduto({ onAdicionar }) {
 
                 const dados = await resposta.json()
                 setProduto(dados)
-
             } catch (error) {
-                console.error('Error:', error.message);
+                console.error('Erro ao buscar produto:', error)
                 setErro('Não foi possível carregar o produto.')
-
             } finally {
                 setCarregando(false)
             }
@@ -34,15 +37,25 @@ function DetalhesProduto({ onAdicionar }) {
         buscarProduto()
     }, [id])
 
-    if (carregando) {
-        return <p>Carregando produto...</p>
+    function adicionarProduto() {
+        adicionarAoCarrinho(produto)
+        alert(`Produto ${produto.nome} adicionado ao carrinho!`)
     }
 
-    if (erro) {
+    if (carregando) {
         return (
             <div className="container">
-                <p>{erro}</p>
-                <Link to="/">Voltar para a loja</Link>
+                <p>Carregando produto...</p>
+            </div>
+        )
+    }
+
+    if (erro || !produto) {
+        return (
+            <div className="container">
+                <h1>Produto não encontrado</h1>
+                <p>{erro || 'Esse produto não existe.'}</p>
+                <Link to="/produtos">Voltar para os produtos</Link>
             </div>
         )
     }
@@ -50,7 +63,6 @@ function DetalhesProduto({ onAdicionar }) {
     return (
         <div className="container">
             <div className="detalhes-produto">
-
                 <img
                     src={produto.imagem}
                     alt={produto.nome}
@@ -59,25 +71,24 @@ function DetalhesProduto({ onAdicionar }) {
                 <div className="detalhes-info">
                     <h1>{produto.nome}</h1>
 
-                    <p>
-                        Categoria: {produto.categoria}
-                    </p>
+                    <p>Categoria: {produto.categoria}</p>
 
                     <p>{produto.descricao}</p>
 
                     <h2>
-                        R$ {produto.preco.toFixed(2)}
+                        R$ {Number(produto.preco).toFixed(2)}
                     </h2>
 
-                    <button
-                        onClick={() => onAdicionar(produto)}
-                    >
+                    <button onClick={adicionarProduto}>
                         Adicionar ao carrinho
                     </button>
 
-                    <Link to="/">Voltar para a loja</Link>
+                    <p>
+                        <Link to="/produtos">
+                            Voltar para os produtos
+                        </Link>
+                    </p>
                 </div>
-
             </div>
         </div>
     )
