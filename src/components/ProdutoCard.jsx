@@ -1,5 +1,6 @@
 
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 function ProdutoCard({ produto, onAdicionar }) {
     return (
@@ -34,6 +35,20 @@ function ProdutoCard({ produto, onAdicionar }) {
             </button>
         </div>
     )
+}
+
+ProdutoCard.propTypes = {
+    produto: PropTypes.shape({
+        id: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number
+        ]).isRequired,
+        nome: PropTypes.string.isRequired,
+        imagem: PropTypes.string,
+        categoria: PropTypes.string.isRequired,
+        preco: PropTypes.number.isRequired
+    }).isRequired,
+    onAdicionar: PropTypes.func.isRequired
 }
 
 export default ProdutoCard
