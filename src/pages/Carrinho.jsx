@@ -2,16 +2,14 @@
 import ItemCarrinho from '../components/ItemCarrinho.jsx'
 import ResumoCompra from '../components/ResumoCompra.jsx'
 import { useCarrinho } from '../hooks/useCarrinho.js'
+import { calcularTotalCarrinho } from '../utils/carrinho.js'
 
 function Carrinho() {
     const {
         carrinho,
     } = useCarrinho()
 
-    // Soma o valor de todos os produtos
-    const total = carrinho.reduce((soma, item) => {
-        return soma + (Number(item.preco) * item.quantidade)
-    }, 0)
+    const total = calcularTotalCarrinho(carrinho)
 
     return (
         <div className="pagina-carrinho">
@@ -37,7 +35,10 @@ function Carrinho() {
                     <div className="total-carrinho">
 
                         <h2>
-                            Total: R$ {total.toFixed(2)}
+                            Total: {total.toLocaleString('pt-BR', {
+                                style: 'currency',
+                                currency: 'BRL'
+                            })}
                         </h2>
 
                     </div>

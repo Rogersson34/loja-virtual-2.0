@@ -1,3 +1,7 @@
+import {
+  calcularTotalCarrinho,
+  calcularQuantidadeTotal
+} from '../utils/carrinho.js'
 
 import { useState, useEffect } from 'react'
 import { CarrinhoContext } from './CarrinhoContext'
@@ -85,15 +89,9 @@ export function CarrinhoProvider({ children }) {
     ))
   }
 
-  const quantidadeTotal = carrinho.reduce(
-    (total, item) => total + item.quantidade,
-    0
-  )
+  const quantidadeTotal = calcularQuantidadeTotal(carrinho)
 
-  const valorTotal = carrinho.reduce(
-    (total, item) => total + Number(item.preco) * item.quantidade,
-    0
-  )
+  const valorTotal = calcularTotalCarrinho(carrinho)
 
   return (
     <CarrinhoContext.Provider

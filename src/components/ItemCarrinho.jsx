@@ -1,4 +1,5 @@
 
+import PropTypes from 'prop-types'
 import { useCarrinho } from '../hooks/useCarrinho.js'
 
 function ItemCarrinho({ item }) {
@@ -63,6 +64,25 @@ function ItemCarrinho({ item }) {
             </button>
         </div>
     )
+}
+
+ItemCarrinho.propTypes = {
+    item: PropTypes.shape({
+        id: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number
+        ]).isRequired,
+        nome: PropTypes.string.isRequired,
+        preco: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number
+        ]).isRequired,
+        quantidade: PropTypes.number.isRequired,
+        estoque: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number
+        ])
+    }).isRequired
 }
 
 export default ItemCarrinho

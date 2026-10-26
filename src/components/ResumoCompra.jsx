@@ -1,4 +1,4 @@
-
+import { calcularTotalCarrinho } from '../utils/carrinho.js'
 import { useNavigate } from 'react-router-dom'
 import { useCarrinho } from '../hooks/useCarrinho.js'
 
@@ -7,12 +7,7 @@ function ResumoCompra() {
 
     const { carrinho, quantidadeTotal } = useCarrinho()
 
-    const valorTotal = carrinho.reduce(
-        (total, item) => {
-            return total + (Number(item.preco) * item.quantidade)
-        },
-        0
-    )
+    const valorTotal = calcularTotalCarrinho(carrinho)
 
     function irParaPagamento() {
         navigate('/pagamento', {
@@ -33,8 +28,12 @@ function ResumoCompra() {
             </p>
 
             <p>
-                Total:
-                <strong> R$ {valorTotal.toFixed(2)}</strong>
+                Total: <strong>
+                    {valorTotal.toLocaleString('pt-BR', {
+                        style: 'currency',
+                        currency: 'BRL'
+                    })}
+                </strong>
             </p>
 
             <button

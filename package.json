@@ -9,7 +9,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest run",
-    "server": "json-server db.json --port 3001"
+    "server": "json-server db.json --port 3001",
+    "api": "json-server db.json --port 3001"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.9.1",

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import usePagamento from '../hooks/usePagamento.js'
 import validarCartao from '../utils/pagamento.js'
@@ -7,7 +7,6 @@ import { useCarrinho } from '../hooks/useCarrinho.js'
 
 function Pagamento() {
     const navigate = useNavigate()
-    const { state } = useLocation()
     const { processarPagamento, carregando } = usePagamento()
     const { carrinho, setCarrinho } = useCarrinho()
 
@@ -18,8 +17,6 @@ function Pagamento() {
 
     const [formaPagamento, setFormaPagamento] = useState('')
     const [erro, setErro] = useState('')
-
-    console.log(state)
 
     const [cartao, setCartao] = useState({
         titular: '',
