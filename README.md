@@ -1,16 +1,42 @@
-# React + Vite
+🛍️ Loja Virtual 2.0
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+📌 Sobre o projeto
 
-Currently, two official plugins are available:
+A Loja Virtual 2.0 é uma aplicação web desenvolvida com React, que simula uma loja virtual. O projeto permite visualizar produtos, pesquisar itens, consultar detalhes, gerenciar um carrinho de compras e simular pagamentos.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+O objetivo é praticar conceitos de desenvolvimento front-end, organização de componentes, gerenciamento de estado e integração com uma API.
 
-## React Compiler
+🚀 Tecnologias utilizadas
+React
+JavaScript
+Vite
+React Router DOM
+Context API
+React Hook Form
+Zod
+JSON Server
+Vitest
+CSS
+PropTypes
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+✨ Funcionalidades
 
-## Expanding the ESLint configuration
+Listagem de produtos carregados por uma API.
+Pesquisa de produtos.
+Página de detalhes de cada produto.
+Adição e remoção de produtos do carrinho.
+Atualização da quantidade de itens.
+Controle de estoque.
+Cálculo automático da quantidade e do valor total.
+Persistência do carrinho no navegador com localStorage.
+Seleção de forma de pagamento.
+Validação dos dados do cartão de crédito.
+Simulação de aprovação e recusa de pagamento.
+Páginas de sucesso e falha no pagamento.
+Interface responsiva.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Link do Trello: https://trello.com/b/AaNdx8vm/loja-virtual-20
+
+Link do Video:https://docs.google.com/videos/d/12vx2Vkw6B9uqnXChufKwJnAAk-CWcZp404ioRXtk_Dk/play?usp=sharing
+
+Link do GitHub:https://github.com/Rogersson34/loja-virtual-2.0
